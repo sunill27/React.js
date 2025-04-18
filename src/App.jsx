@@ -1,17 +1,39 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./Home";
-import About from "./About";
-import Contact from "./Contact";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes";
+import { useState } from "react";
 function App() {
+  const [count, setCount] = useState(0);
+  const [name, setName] = useState("Sunil");
+
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </BrowserRouter>
+      <h1>{count}</h1>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        +
+      </button>
+      <button
+        onClick={() => {
+          setCount(count - 1);
+        }}
+      >
+        -
+      </button>
+
+      <h2>Hello {name}</h2>
+
+      <button
+        onClick={() => {
+          setName("Cypher");
+        }}
+      >
+        Change Name
+      </button>
+
+      <RouterProvider router={router} />
     </>
   );
 }
